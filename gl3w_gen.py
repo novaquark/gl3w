@@ -172,8 +172,8 @@ extern union GL3WProcs gl3wProcs;
 ''')
 
 # Generate gl3w.c
-print('Generating gl3w.c in {0}...'.format(os.path.join(args.root, 'src')))
-with open(os.path.join(args.root, 'src/gl3w.c'), 'wb') as f:
+print('Generating gl3w_gen.h in {0}...'.format(os.path.join(args.root, 'src')))
+with open(os.path.join(args.root, 'src/gl3w_gen.h'), 'wb') as f:
     write(f, UNLICENSE)
     write(f, r'''#include <GL/gl3w.h>
 #include <stdlib.h>

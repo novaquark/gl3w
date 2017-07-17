@@ -14,7 +14,7 @@ set(HEADER_FILES
 )
 
 set(SOURCE_FILES
-	"${SOURCE_DIR}/gl3w.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/gl3w.c"
 )
 
 # add and depend on OpenGL
@@ -25,7 +25,7 @@ set(EXTERNAL_LIBRARIES ${EXTERNAL_LIBRARIES} ${OPENGL_LIBRARIES})
 # add command to create the header and source files
 add_custom_command(
 	OUTPUT
-		"${SOURCE_DIR}/gl3w.c"
+		"${SOURCE_DIR}/gl3w_gen.h"
 		"${HEADER_DIR}/GL/gl3w.h"
 		"${HEADER_DIR}/GL/glcorearb.h"
 	COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/gl3w_gen.py
@@ -37,7 +37,7 @@ add_custom_command(
 add_custom_target(
 	gl3w_gen ALL
 	DEPENDS
-		"${SOURCE_DIR}/gl3w.c"
+		"${SOURCE_DIR}/gl3w_gen.h"
 		"${HEADER_DIR}/GL/gl3w.h"
 		"${HEADER_DIR}/GL/glcorearb.h"
 )
@@ -53,6 +53,7 @@ target_sources(${PROJECT_NAME} INTERFACE ${SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} INTERFACE
 	$<BUILD_INTERFACE:${HEADER_DIR}>
 	$<INSTALL_INTERFACE:include>
+	${SOURCE_DIR}
 )
 target_include_directories(${PROJECT_NAME} INTERFACE ${EXTERNAL_INCLUDE_DIRS})
 # let remote project know which libraries need to be linked
