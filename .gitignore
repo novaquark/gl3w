@@ -4,7 +4,6 @@
 bin
 lib
 include
-src/gl3w.c
 *.cmake
 CMakeFiles
 CMakeCache.txt
